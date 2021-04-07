@@ -11,12 +11,10 @@ defmodule GithubApiWeb.MyErrorView do
   # the template name. For example, "404.json" becomes
   # "Not Found".
 
-  def render("400", %{result: _result}) do
-    %{errors: %{detail: "Bad request"}}
+  def render("error.json", %{status: status}) do
+    %{error: status}
   end
-  def render("404", %{result: _result}) do
-    %{errors: %{detail: "Not found"}}
-  end
+
 
   def template_not_found(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}

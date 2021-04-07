@@ -4,7 +4,7 @@ defmodule GithubApi do
   def user_repos(username) do
     case Client.user_repos(username) do
       {:ok, repos}  -> {:ok, parse_repos(repos)}
-      {:error, result} -> {:error, result}
+      {:error, status} -> {:error, %{status: status}}
     end
   end
 

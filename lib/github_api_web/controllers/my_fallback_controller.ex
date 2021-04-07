@@ -3,17 +3,12 @@ defmodule MyFallbackController do
 
   alias GithubApiWeb.MyErrorView
 
-  def call(conn, {:error, :not_found}) do
+  def call(conn, {:error, %{status: status}}) do
+    IO.inspect status
     conn
-    |> put_status(:not_found)
+    |> put_status(status)
     |> put_view(MyErrorView)
-    |> render(:"404")
+    |> render("error.json", %{status: status})
   end
 
-  def call(conn, {:error, :bad_request}) do
-    conn
-    |> put_status(403)
-    |> put_view(MyErrorView)
-    |> render(:"400")
-  end
 end

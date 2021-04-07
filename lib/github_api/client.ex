@@ -25,7 +25,7 @@ defmodule GithubApi.Client do
     {:error, :not_found}
   end
 
-  defp handle_get({:error, reason}) do
-    {:error, reason}
+  defp handle_get({:error, _reason}) do
+    {:error, :internal_server_error}
   end
 end
