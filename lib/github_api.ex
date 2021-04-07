@@ -1,20 +1,18 @@
 defmodule GithubApi do
   alias GithubApi.Client
 
-  @moduledoc """
-  GithubApi keeps the contexts that define your domain
-  and business logic.
+  def user_repos(username) do
+    case Client.user_repos(username) do
+      {:ok, repos}  -> {:ok, parse_repos(repos)}
+      {:error, result} -> {:error, result}
+    end
+  end
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
-
-  def get_repos(username) do
-    {:ok, repos} = Client.get_repos(username)
-
+  defp parse_repos(repos) do
     repos
     |> Enum.map(fn repo -> select_fields(repo) end)
   end
+
 
   defp select_fields(%{
          "id" => id,

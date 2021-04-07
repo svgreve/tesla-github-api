@@ -5,10 +5,10 @@ defmodule GithubApi.Client do
   plug Tesla.Middleware.Headers, [{"user-agent", "Tesla"}]
   plug Tesla.Middleware.JSON
 
-  def get_repos(username) do
+  def user_repos(username) do
     case byte_size(username) do
       0 ->
-        {:error, "User name not provided!"}
+        {:error, :bad_request}
 
       _ ->
         "#{username}/repos"
@@ -22,10 +22,10 @@ defmodule GithubApi.Client do
   end
 
   defp handle_get({:ok, %Tesla.Env{status: 404, body: _body}}) do
-    {:error, {:bad_request, "User name not found!"}}
+    {:error, :not_found}
   end
 
   defp handle_get({:error, reason}) do
-    {:error, {:bad_request, reason}}
+    {:error, reason}
   end
 end

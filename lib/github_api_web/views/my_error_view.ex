@@ -1,4 +1,4 @@
-defmodule GithubApiWeb.ErrorView do
+defmodule GithubApiWeb.MyErrorView do
   use GithubApiWeb, :view
 
   # If you want to customize a particular status code
@@ -10,6 +10,14 @@ defmodule GithubApiWeb.ErrorView do
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.json" becomes
   # "Not Found".
+
+  def render("400", %{result: _result}) do
+    %{errors: %{detail: "Bad request"}}
+  end
+  def render("404", %{result: _result}) do
+    %{errors: %{detail: "Not found"}}
+  end
+
   def template_not_found(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end

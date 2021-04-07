@@ -3,9 +3,11 @@ defmodule GithubApiWeb.RepoController do
 
   alias GithubApi
 
-  def index(conn, %{"username"=> username}) do
-    repos = GithubApi.get_repos(username)
-    render(conn, "index.json", repos: repos)
-  end
+  action_fallback MyFallbackController
 
+  def index(conn, %{"username" => username}) do
+    with {:ok, repos} <- GithubApi.user_repos(username) do
+      render(conn, "index.json", repos: repos)
+    end
+  end
 end
