@@ -1,5 +1,11 @@
 # TeslaGithubApi
 
+## Desafio 02- Testando requisições com Bypass
+
+Nesse desafio, você deverá testar o cliente criado no desafio anterior usando a lib bypass (link: [https://github.com/PSPDFKit-labs/bypass](https://github.com/PSPDFKit-labs/bypass)) aplicando tudo que aprendeu até agora!
+
+## Desafio 01- Consumindo APIs
+
 Nesse desafio, você deverá criar uma aplicação que consome a API do GitHub retornando a lista de repositórios de um usuário informado.
 A rota para obter esse dado da API é `[https://api.github.com/users/danilo-vieira/repos](https://api.github.com/users/danilo-vieira/repos)` onde **danilo-vieira** deverá ser o nome do usuário que está solicitando a lista de repositórios, ou seja, esse dado deve ser dinâmico.
 
