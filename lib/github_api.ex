@@ -2,7 +2,7 @@ defmodule GithubApi do
   alias GithubApi.Client
 
   def user_repos(username) do
-    case Client.user_repos(username) do
+    case Client.user(username) do
       {:ok, repos}  -> {:ok, parse_repos(repos)}
       {:error, status} -> {:error, %{status: status}}
     end
